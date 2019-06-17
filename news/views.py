@@ -26,7 +26,6 @@ def past_days_news(request,past_date):
     except ValueError:
       raise Http404()
       assert False
-    
     if date == dt.date.today():
         return redirect(news_today)
     
