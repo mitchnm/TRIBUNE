@@ -1,4 +1,4 @@
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {%load static%}
 <!DOCTYPE html>
 <html>
@@ -15,11 +15,12 @@
   <link rel="stylesheet" href="{%static 'css/basenews.css' %}">
   {% endblock %}
 </head>
+{%include "navbar.html"%}
 
-<body>
-  {%include "navbar.html"%}
+<body style="background-color: black;">
   {% block content %}
-  <h1 class='text-center'>News for {{date|date:"l d-F Y"}}</h1>
+  <br><br><br>
+  <h1 class='text-center'>News for {{date|date:"l d-F Y"}}</h1><br>
   {%endblock%}
   {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

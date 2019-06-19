@@ -1,6 +1,6 @@
 {% extends 'all-news/base.html' %}
 {% block content %}
-<div class="container">
+<div class="container" style="color: white;">
   <div class="row">
     {% if articles %}
     <h2>Found {{ articles|length }} of searched term {{ message }}.</h2>
@@ -11,8 +11,23 @@
   <div class="row">
     {% if articles %}
     {% for article in articles %}
-    <div class="col-sm-6 col-md-6">
-      <h1>{{ article.title }}</h1>
+    <img src="{{article.article_image.url}}" class="img-responsive center" alt="image"
+      style="width: 500px; height: 350px; display: block; margin-right: auto; margin-left: auto;">
+    <div style="color: white;">
+      <div class="row">
+        <h2 style="text-align: center;">{{article.title}}</h2>
+      </div>
+
+      <div class="row">
+        {% autoescape on %}
+        <p>{{article.post| safe}}</p>
+        {% endautoescape %}
+      </div>
+      <div class="row">
+        <p>Posted {{article.pub_date|timesince}} ago by {{article.editor}}</p>
+      </div>
+      <hr>
+      <br>
     </div>
     {% endfor %}
     {% endif %}

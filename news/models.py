@@ -11,7 +11,7 @@ class tags(models.Model):
         return self.name
 
 class Article(models.Model):
-    title = models.CharField(max_length =60)
+    title = models.CharField(max_length =200)
     post = HTMLField()
     editor = models.ForeignKey(User,on_delete=models.CASCADE)
     tags = models.ManyToManyField(tags)

@@ -7,56 +7,89 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="{% url 'newsToday' %}">The Moringa Tribune</a>
-      </div>
-      <!-- Adding a search form  -->
-      <div class="navbar-right">
-        <form class="navbar-form" role="search" action="{% url 'search_results' %}">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search Article" name="article">
-            <div class="input-group-btn">
-              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark ">
+    <a class="navbar-brand" href="{% url 'newsToday' %}">The Moringa Tribune</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+      aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %}
+        <div class="btn-group my-2 my-lg-0" role="group" aria-label="Button group with nested dropdown">
+          <button type="button" class="btn btn-secondary">Account</button>
+          <div class="btn-group" role="group">
+            <button id="btnGroupDrop2" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"></button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+              <a class="dropdown-item" href="{%url 'newsToday'%}">Home</a>
+              <a class="dropdown-item" href="{% url 'new-article' %}">Create Article</a>
+              <a class="dropdown-item" href="/accounts/password/change">Change Password</a>
+              <a class="dropdown-item" href="/logout">Logout</a>
+              {% else %}
+              <a class="btn btn-secondary" href="/accounts/login">Login</a>
             </div>
           </div>
-        </form>
-      </div>
-      <!-- search form end -->
-      <div class="col-sm-6 col-md-6">
-        {% if user.is_authenticated %}
-        <ul>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button"
-              aria-expanded="false">Account
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a href="{%url 'newsToday'%}">Home</a>
-              </li>
-              <li>
-                <a href="{% url 'new-article' %}">Create Article</a>
-              </li>
-              <li>
-                <a href="/accounts/password/change">Change Password</a>
-              </li>
-              <li>
-                <a href="/logout">Logout</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        {% else %}
-        <li>
-          <a class='btn btn-default' href="/accounts/login">Login</a>
-        </li>
-
+        </div>
         {% endif %}
-      </div>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" action="{% url 'search_results' %}">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search Article" role="search" name="article">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
   </nav>
+
 </body>
 
 </html>
+
+
+<!-- <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'newsToday' %}">The Moringa Tribune</a>
+    </div>
+    <div class="navbar-right">
+      <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search Article" name="article">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="navbar-right">
+      {% if user.is_authenticated %}
+      <ul>
+        <li class="dropdown" style="margin-top: 8px;">
+          <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button"
+            aria-expanded="false">Account
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="{%url 'newsToday'%}">Home</a>
+            </li>
+            <li>
+              <a href="{% url 'new-article' %}">Create Article</a>
+            </li>
+            <li>
+              <a href="/accounts/password/change">Change Password</a>
+            </li>
+            <li>
+              <a href="/logout">Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      {% else %}
+      <li>
+        <a class='btn btn-default' href="/accounts/login">Login</a>
+      </li>
+
+      {% endif %}
+    </div>
+  </div>
+</nav> -->
