@@ -16,10 +16,9 @@
   {% endblock %}
 </head>
 {%include "navbar.html"%}
-
-<body style="background-color: black;">
+<br><br><br>
+<body style="background-color: black; color:white;">
   {% block content %}
-  <br><br><br>
   <h1 class='text-center'>News for {{date|date:"l d-F Y"}}</h1><br>
   {%endblock%}
   {% block scripts %}
